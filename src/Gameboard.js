@@ -14,5 +14,31 @@ function Gameboard() {
     }
   }
 
-  return { board, placeShip };
+  function attack(x, y) {
+    const hitsCoordinates = [];
+    //Already attacked coordinates
+    if (board[x][y] === "X" || board[x][y] === "O") return;
+
+    // O if ship is hit and X if it's a miss
+    if (board[x][y] !== ".") {
+      board[x][y].hit();
+      hitsCoordinates.push([x, y]);
+      board[x][y] = "O";
+    } else {
+      board[x][y] = "X";
+    }
+  }
+
+  function missedAttks() {
+    const newArr = [];
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board.length; j++) {
+        if (board[i][j] === "X") {
+          newArr.push([i, j]);
+        }
+      }
+    }
+    return newArr;
+  }
+  return { board, placeShip, attack, missedAttks };
 }
