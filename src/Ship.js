@@ -9,5 +9,8 @@ function Ship(length) {
 
   const getHits = () => hits;
 
-  return { length, hit, getHits };
+  function isSunk() {
+    return hits >= length ? true : false;
+  }
+  return { length, getHits, hit, isSunk };
 }
