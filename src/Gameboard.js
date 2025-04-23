@@ -3,8 +3,10 @@ import { CreateBoard } from "./CreateBoard";
 function Gameboard() {
   //Creates 10x10 board
   const board = CreateBoard(10);
+  const fleet = [];
 
   function placeShip(ship, x, y, direction) {
+    fleet.push(ship);
     for (let i = 0; i < ship.length; i++) {
       if (direction === "horizontal") {
         board[x][y + i] = ship;
@@ -40,5 +42,11 @@ function Gameboard() {
     }
     return newArr;
   }
-  return { board, placeShip, attack, missedAttks };
+
+  function Defeated() {
+    const checkDefeated = fleet.every((ship) => ship.isSunk() === true);
+    return checkDefeated;
+  }
+
+  return { board, placeShip, attack, missedAttks, Defeated };
 }
