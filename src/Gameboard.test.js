@@ -47,13 +47,20 @@ describe("Gameboard", () => {
     ]);
   });
   test("report whether or not all of the ships have been sunk", () => {
+    let middleShip = Ship(3);
+    gameboard.placeShip(middleShip, 1, 2, "horizontal");
     gameboard.placeShip(babyShip, 5, 3, "vertical");
     gameboard.placeShip(daddyShip, 6, 3, "vertical");
     gameboard.attack(5, 3);
-    gameboard.attack(8, 5);
-    gameboard.attack(8, 4);
-    gameboard.Defeated();
-    expect(babyShip.isSunk()).toBe(true);
-    expect(daddyShip.isSunk()).toBe(false);
+    gameboard.attack(2, 5);
+    gameboard.attack(8, 3);
+    expect(gameboard.Defeated()).toBe(false);
+    gameboard.attack(6, 3);
+    gameboard.attack(7, 3);
+    gameboard.attack(9, 3);
+    gameboard.attack(1, 2);
+    gameboard.attack(1, 3);
+    gameboard.attack(1, 4);
+    expect(gameboard.Defeated()).toBe(true);
   });
 });
