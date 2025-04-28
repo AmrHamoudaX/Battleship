@@ -9,8 +9,9 @@ function CreateUiGrid() {
   for (let i = 0; i < gridSize; i++) {
     const row1 = document.createElement("div");
     const row2 = document.createElement("div");
-    row1.classList = "row";
-    row2.classList = "row";
+    row1.classList.add("row");
+    row2.classList.add("row");
+
     for (let j = 0; j < gridSize; j++) {
       const column1 = document.createElement("div");
       const column2 = document.createElement("div");
@@ -18,8 +19,9 @@ function CreateUiGrid() {
       column2.classList.add("cell", "enemy-cells");
       row1.append(column1);
       row2.append(column2);
-      myBoard.append(row1);
-      enemyBoard.append(row2);
     }
+
+    myBoard.append(row1);
+    enemyBoard.append(row2);
   }
 }
