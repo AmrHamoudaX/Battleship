@@ -14,8 +14,8 @@ function CreateUiGrid() {
     for (let j = 0; j < gridSize; j++) {
       const column1 = document.createElement("div");
       const column2 = document.createElement("div");
-      column1.classList.add("column", "my-cells");
-      column2.classList.add("column", "enemy-cells");
+      column1.classList.add("cell", "my-cells");
+      column2.classList.add("cell", "enemy-cells");
       row1.append(column1);
       row2.append(column2);
       myBoard.append(row1);
