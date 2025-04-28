@@ -6,8 +6,16 @@
 body {
     font-family: Arial, sans-serif;
     background: #0a192f;
-    color: #6b7280;
+    background-color: #0a0e27;
+    color: #0ac5c4;
     text-align: center;
+}
+
+@media (min-width: 992px) {
+    .setup-cell {
+        height: 40px;
+        width: 40px;
+    }
 }
 
 .game-name {
@@ -27,11 +35,11 @@ body {
     display: flex;
 }
 
-.column {
-    width: 30px;
-    height: 30px;
-    background-color: #0a192f;
-    outline: 0.5px solid #6b7280;
+.cell {
+    width: 40px;
+    height: 40px;
+    background-color: #1ca3ec;
+    border: 1px solid black;
 }
 
 .board {
@@ -44,13 +52,14 @@ body {
     display: flex;
     justify-content: space-between;
     /*width: 90%;*/
-    margin-left: 30px;
+    /*amount of space away of the col coordinates*/
+    margin-left: 40px;
 }
 
 .row-coordinates h3 {
     text-align: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     line-height: 30px;
     font-weight: 500;
 }
@@ -68,8 +77,140 @@ body {
 
 .column-coordinates h3 {
     text-align: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     line-height: 30px;
     font-weight: 500;
+}
+
+.crosshair {
+    width: 50px;
+    height: 50px;
+}
+
+.has-ship {
+    background-color: #24244c;
+}
+
+.hit {
+    background-color: green;
+    animation: pop 0.3s ease;
+}
+
+.miss {
+    background-color: red;
+    animation: pop 0.3s ease;
+}
+
+.fogged {
+    background-color: black;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.fleet {
+    max-width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #0ac5c4;
+    display: flex;
+    justify-content: space-between;
+}
+
+.enemy-cells,
+.my-cells {
+    transition:
+        background-color 0.3s,
+        transform 0.2s;
+}
+
+.enemy-cells:hover {
+    background-color: #e0f2fe;
+    /* light blue */
+    cursor: crosshair;
+}
+
+/*Ships */
+.destroyer-container,
+.heavycruiser-container,
+.destroyer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.selectable {
+    cursor: pointer;
+}
+
+.ship {
+    background-repeat: no-repeat;
+    background-size: 101% 101%;
+}
+
+.setup-ship {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    width: fit-content;
+    border-radius: 3px;
+}
+
+.setup-ship.ships-horizontal {
+    flex-direction: row;
+}
+
+.west {
+    transform: rotate(-90deg);
+}
+
+.battleship-0 {
+    background-image: url("../images/battleship-0.png");
+}
+
+.battleship-1 {
+    background-image: url("../images/battleship-1.png");
+}
+
+.battleship-2 {
+    background-image: url("../images/battleship-2.png");
+}
+
+.battleship-3 {
+    background-image: url("../images/battleship-3.png");
+}
+
+.cruiser-0 {
+    background-image: url("../images/cruiser-0.png");
+}
+
+.cruiser-1 {
+    background-image: url("../images/cruiser-1.png");
+}
+
+.cruiser-2 {
+    background-image: url("../images/cruiser-2.png");
+}
+
+.destroyer-0 {
+    background-image: url("../images/destroyer-0.png");
+}
+
+.destroyer-1 {
+    background-image: url("../images/destroyer-1.png");
 }
