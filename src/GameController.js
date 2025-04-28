@@ -1,4 +1,3 @@
-export { GameController };
 import { Ship } from "./Ship";
 import { Player } from "./Player";
 
@@ -6,11 +5,13 @@ function GameController() {
   //Players
   const player1 = Player("Russia");
   const player2 = Player("Germany");
-  console.log(player1.gameBoard);
+  let activePlayer = player1;
 
-  //Boards
-  const board1 = player1.gameBoard.board;
-  const board2 = player2.gameBoard.board;
+  const getActivePlayer = () => activePlayer;
+
+  const getEnemyPlayer = () => {
+    return getActivePlayer() === player1 ? player2 : player1;
+  };
 
   //Fleet and placements
   function Fleet() {
@@ -19,28 +20,28 @@ function GameController() {
     const submarine = Ship(1);
     return { destroyer, heavyCruiser, submarine };
   }
+  const player1Fleet = Fleet();
+  const player2Fleet = Fleet();
 
-  player1.gameBoard.placeShip(Fleet().destroyer, 5, 7, "vertical");
-  player1.gameBoard.placeShip(Fleet().heavyCruiser, 2, 7, "horizontal");
-  player1.gameBoard.placeShip(Fleet().submarine, 1, 7, "horizontal");
-  player2.gameBoard.placeShip(Fleet().destroyer, 1, 3, "vertical");
-  player2.gameBoard.placeShip(Fleet().heavyCruiser, 4, 5, "horizontal");
-  player2.gameBoard.placeShip(Fleet().submarine, 9, 7, "horizontal");
+  player1.gameBoard.placeShip(player1Fleet.destroyer, 5, 7, "vertical");
+  player1.gameBoard.placeShip(player1Fleet.heavyCruiser, 2, 7, "horizontal");
+  player1.gameBoard.placeShip(player1Fleet.submarine, 1, 7, "horizontal");
+  player2.gameBoard.placeShip(player2Fleet.destroyer, 1, 3, "vertical");
+  player2.gameBoard.placeShip(player2Fleet.heavyCruiser, 4, 5, "horizontal");
+  player2.gameBoard.placeShip(player2Fleet.submarine, 9, 7, "horizontal");
 
   //End
-
-  /// Start Game
-  let activePlayer = player1;
 
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === player1 ? player2 : player1;
   };
 
-  const getActivePlayer = () => activePlayer;
-
   const printNewRound = () => {
-    console.log(board1);
-    console.log(board2);
+    //Boards
+    const activeBoard = getActivePlayer().gameBoard.board;
+    const enemyBoard = getEnemyPlayer().gameBoard.board;
+    console.log(activeBoard);
+    console.log(enemyBoard);
     console.log(`${getActivePlayer().playerName}'s turn`);
   };
 
@@ -48,29 +49,23 @@ function GameController() {
     console.log(
       `${getActivePlayer().playerName}'s attacks coordinates (${x}, ${y})`,
     );
-    if (getActivePlayer() === player1) {
-      player2.gameBoard.attack(x, y);
-      if (player2.gameBoard.Defeated()) {
-        console.log(`${player1.playerName} Wins!`);
-        return;
-      }
-    } else if (activePlayer === player2) {
-      player1.gameBoard.attack(x, y);
-      if (player1.gameBoard.Defeated()) {
-        console.log(`${player2.playerName} Winss!`);
-        return;
-      }
-    }
-
-    // This is where  i need to check for winner and handle win msg
-
-    //
-
+    getEnemyPlayer().gameBoard.attack(x, y);
+    if (CheckForWinner()) return;
     switchPlayerTurn();
-    printNewRound();
   };
+
+  // This is where  i need to check for winner and handle win msg
+  function CheckForWinner() {
+    if (getEnemyPlayer().gameBoard.Defeated()) {
+      console.log(`${getActivePlayer().playerName} Wins!!`);
+      return true;
+    }
+    return false;
+  }
 
   printNewRound();
 
-  return { playRound, getActivePlayer, printNewRound };
+  return { playRound, getActivePlayer, printNewRound, getEnemyPlayer };
 }
+
+export { GameController };
