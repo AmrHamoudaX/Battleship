@@ -2,6 +2,7 @@ export { DisplayController };
 import { CreateUiGrid } from "./CreateUiGrid";
 import { GameController } from "./GameController";
 import { RenderBoard } from "./RenderBoard";
+import { TogglePassScreen } from "./TogglePassScreen";
 
 function DisplayController() {
   CreateUiGrid();
@@ -43,7 +44,6 @@ function DisplayController() {
     }
     //Make sure I've clicked a column and not the gaps in between
     if (!selectedRow || !selectedColumn) return;
-
     game.playRound(selectedRow, selectedColumn);
     if (game.CheckForWinner()) {
       playerTurnDiv.textContent = `${game.getActivePlayer().playerName} Wins!!!`;
@@ -54,5 +54,6 @@ function DisplayController() {
     console.log(selectedColumn);
   }
   //initial render
+  TogglePassScreen(game.getActivePlayer().playerName);
   updateScreen();
 }
