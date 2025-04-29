@@ -12,34 +12,50 @@
         <h1 class="game-name">GHOST WATERS</h1>
         <h1 class="turn"></h1>
         <div class="boards-container">
-            <div class="board">
-                <h1>Your Board</h1>
-                <div class="row-coordinates">
-                    <h3>A</h3>
-                    <h3>B</h3>
-                    <h3>C</h3>
-                    <h3>D</h3>
-                    <h3>E</h3>
-                    <h3>F</h3>
-                    <h3>G</h3>
-                    <h3>H</h3>
-                    <h3>I</h3>
-                    <h3>J</h3>
-                </div>
-                <div class="grid-container">
-                    <div class="column-coordinates">
-                        <h3>1</h3>
-                        <h3>2</h3>
-                        <h3>3</h3>
-                        <h3>4</h3>
-                        <h3>5</h3>
-                        <h3>6</h3>
-                        <h3>7</h3>
-                        <h3>8</h3>
-                        <h3>9</h3>
-                        <h3>10</h3>
+            <div class="pass-container">
+                <div class="board">
+                    <h1>Your Board</h1>
+                    <div class="row-coordinates">
+                        <h3>A</h3>
+                        <h3>B</h3>
+                        <h3>C</h3>
+                        <h3>D</h3>
+                        <h3>E</h3>
+                        <h3>F</h3>
+                        <h3>G</h3>
+                        <h3>H</h3>
+                        <h3>I</h3>
+                        <h3>J</h3>
                     </div>
-                    <div class="grid my-board"></div>
+                    <div class="grid-container">
+                        <div class="column-coordinates">
+                            <h3>1</h3>
+                            <h3>2</h3>
+                            <h3>3</h3>
+                            <h3>4</h3>
+                            <h3>5</h3>
+                            <h3>6</h3>
+                            <h3>7</h3>
+                            <h3>8</h3>
+                            <h3>9</h3>
+                            <h3>10</h3>
+                        </div>
+                        <div class="grid my-board"></div>
+                    </div>
+                </div>
+                <div class="pass-screen">
+                    <h2 class="player-turn"></h2>
+                    <button class="ready">
+                        R E A D Y
+                        <div id="clip">
+                            <div id="leftTop" class="corner"></div>
+                            <div id="rightBottom" class="corner"></div>
+                            <div id="rightTop" class="corner"></div>
+                            <div id="leftBottom" class="corner"></div>
+                        </div>
+                        <span id="rightArrow" class="arrow"></span>
+                        <span id="leftArrow" class="arrow"></span>
+                    </button>
                 </div>
             </div>
             <div class="board">
