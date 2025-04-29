@@ -1,10 +1,11 @@
 import { Ship } from "./Ship";
 import { Player } from "./Player";
+import { TogglePassScreen } from "./TogglePassScreen";
 
 function GameController() {
   //Players
-  const player1 = Player("Russia");
-  const player2 = Player("Germany");
+  const player1 = Player("Player1");
+  const player2 = Player("Player2");
   let activePlayer = player1;
 
   const getActivePlayer = () => activePlayer;
@@ -46,12 +47,19 @@ function GameController() {
   };
 
   const playRound = (x, y) => {
+    const enemy = getEnemyPlayer();
     console.log(
       `${getActivePlayer().playerName}'s attacks coordinates (${x}, ${y})`,
     );
-    getEnemyPlayer().gameBoard.attack(x, y);
+    enemy.gameBoard.attack(x, y);
     if (CheckForWinner()) return;
-    switchPlayerTurn();
+    console.log(enemy.gameBoard.board[x][y]);
+    if (enemy.gameBoard.board[x][y] === "O") {
+      return;
+    } else {
+      switchPlayerTurn();
+      TogglePassScreen(activePlayer.playerName);
+    }
   };
 
   // This is where  i need to check for winner and handle win msg
