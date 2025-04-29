@@ -65,7 +65,13 @@ function GameController() {
 
   printNewRound();
 
-  return { playRound, getActivePlayer, printNewRound, getEnemyPlayer };
+  return {
+    playRound,
+    getActivePlayer,
+    printNewRound,
+    getEnemyPlayer,
+    CheckForWinner,
+  };
 }
 
 export { GameController };

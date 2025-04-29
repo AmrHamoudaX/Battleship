@@ -45,6 +45,10 @@ function DisplayController() {
     if (!selectedRow || !selectedColumn) return;
 
     game.playRound(selectedRow, selectedColumn);
+    if (game.CheckForWinner()) {
+      playerTurnDiv.textContent = `${game.getActivePlayer().playerName} Wins!!!`;
+      return;
+    }
     updateScreen();
     console.log(selectedRow);
     console.log(selectedColumn);
