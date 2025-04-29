@@ -16,6 +16,11 @@ function RenderBoard(cells, board, isPlayerBoard) {
 
       cells[index].dataset.row = row;
       cells[index].dataset.col = col;
+      if (isPlayerBoard) {
+        cell.classList.add("my-cells");
+      } else {
+        cell.classList.add("enemy-cells");
+      }
 
       if (value === ".") {
         //empty water
@@ -28,7 +33,6 @@ function RenderBoard(cells, board, isPlayerBoard) {
         if (isPlayerBoard) {
           cell.classList.add("has-ship");
         } else {
-          cell.classList.add("fogged");
           //If enemy board, hide ships!
         }
       }
